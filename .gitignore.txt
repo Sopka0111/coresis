@@ -1,0 +1,15 @@
+# Node/Vuetify essentials
+node_modules/
+dist/
+.env
+*.log
+.cache/
+.vscode/
+.DS_Store
+
+# Optional: Vue/Vuetify-specific
+public/
+coverage/
+*.tsbuildinfo
+.yarn-integrity
+

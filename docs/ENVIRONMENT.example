@@ -1,0 +1,333 @@
+# CoreSIS Environment Configuration
+# Copy this file to .env and update with your specific values
+
+# =============================================================================
+# APPLICATION SETTINGS
+# =============================================================================
+
+# Environment (development, staging, production)
+NODE_ENV=production
+
+# Server Configuration
+PORT=5000
+HOST=0.0.0.0
+
+# Application URLs
+CLIENT_URL=https://coresis.app
+API_URL=https://api.coresis.app
+ADMIN_URL=https://admin.coresis.app
+
+# Application Settings
+APP_NAME=CoreSIS
+APP_VERSION=1.0.0
+APP_DESCRIPTION=Powering Pathways. Fueling Futures.
+
+# =============================================================================
+# DATABASE CONFIGURATION
+# =============================================================================
+
+# MongoDB Connection String
+# Format: mongodb://username:password@host:port/database
+MONGO_URI=mongodb://coresis_user:your_secure_password@localhost:27017/coresis
+
+# MongoDB Options
+MONGO_OPTIONS={
+  "useNewUrlParser": true,
+  "useUnifiedTopology": true,
+  "maxPoolSize": 10,
+  "serverSelectionTimeoutMS": 5000,
+  "socketTimeoutMS": 45000,
+  "bufferMaxEntries": 0
+}
+
+# Database Name (if not specified in URI)
+MONGO_DB_NAME=coresis
+
+# =============================================================================
+# AUTHENTICATION & SECURITY
+# =============================================================================
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_EXPIRE=24h
+JWT_REFRESH_EXPIRE=7d
+JWT_ISSUER=CoreSIS
+JWT_AUDIENCE=CoreSIS-Users
+
+# Password Policy
+PASSWORD_MIN_LENGTH=8
+PASSWORD_REQUIRE_UPPERCASE=true
+PASSWORD_REQUIRE_LOWERCASE=true
+PASSWORD_REQUIRE_NUMBERS=true
+PASSWORD_REQUIRE_SPECIAL_CHARS=true
+
+# Session Configuration
+SESSION_SECRET=your-session-secret-key
+SESSION_MAX_AGE=86400000
+
+# Rate Limiting
+RATE_LIMIT_WINDOW=15
+RATE_LIMIT_MAX=100
+RATE_LIMIT_SKIP_SUCCESSFUL_REQUESTS=false
+
+# CORS Configuration
+CORS_ORIGIN=https://coresis.app
+CORS_CREDENTIALS=true
+CORS_METHODS=GET,POST,PUT,DELETE,OPTIONS
+CORS_ALLOWED_HEADERS=Content-Type,Authorization,X-Requested-With
+
+# =============================================================================
+# EMAIL CONFIGURATION
+# =============================================================================
+
+# SMTP Settings
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+
+# Email Templates
+EMAIL_FROM=CoreSIS <noreply@coresis.app>
+EMAIL_REPLY_TO=support@coresis.app
+
+# Email Verification
+EMAIL_VERIFICATION_ENABLED=true
+EMAIL_VERIFICATION_EXPIRE=24h
+
+# Password Reset
+PASSWORD_RESET_ENABLED=true
+PASSWORD_RESET_EXPIRE=1h
+
+# =============================================================================
+# FILE UPLOAD CONFIGURATION
+# =============================================================================
+
+# File Storage
+UPLOAD_PATH=./uploads
+MAX_FILE_SIZE=10485760
+ALLOWED_FILE_TYPES=image/jpeg,image/png,image/gif,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+# Cloud Storage (Optional - for production)
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+
+# AWS S3 (Alternative to Cloudinary)
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
+AWS_REGION=us-east-1
+AWS_S3_BUCKET=coresis-uploads
+
+# =============================================================================
+# LOGGING & MONITORING
+# =============================================================================
+
+# Logging Configuration
+LOG_LEVEL=info
+LOG_FILE=./logs/coresis.log
+LOG_MAX_SIZE=10485760
+LOG_MAX_FILES=5
+
+# Error Tracking (Optional)
+SENTRY_DSN=your-sentry-dsn
+SENTRY_ENVIRONMENT=production
+
+# Performance Monitoring
+ENABLE_PERFORMANCE_MONITORING=true
+PERFORMANCE_LOG_INTERVAL=60000
+
+# =============================================================================
+# FEATURE FLAGS
+# =============================================================================
+
+# Core Features
+FEATURE_STUDENT_PORTAL=true
+FEATURE_INSTRUCTOR_PORTAL=true
+FEATURE_ADMIN_PORTAL=true
+FEATURE_FINANCIAL_MANAGEMENT=true
+FEATURE_LMS=true
+FEATURE_PLACEMENT_TRACKING=true
+
+# Advanced Features
+FEATURE_EMAIL_NOTIFICATIONS=true
+FEATURE_FILE_UPLOADS=true
+FEATURE_REPORTING=true
+FEATURE_AUDIT_LOGS=true
+FEATURE_API_ACCESS=true
+
+# Experimental Features
+FEATURE_MOBILE_APP=false
+FEATURE_AI_INSIGHTS=false
+FEATURE_MULTI_LANGUAGE=false
+FEATURE_WHITE_LABEL=false
+
+# =============================================================================
+# INTEGRATION SETTINGS
+# =============================================================================
+
+# Payment Processing (Optional)
+STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
+
+# PayPal Integration (Alternative)
+PAYPAL_CLIENT_ID=your_paypal_client_id
+PAYPAL_CLIENT_SECRET=your_paypal_client_secret
+PAYPAL_MODE=sandbox
+
+# Calendar Integration
+GOOGLE_CALENDAR_API_KEY=your_google_api_key
+GOOGLE_CALENDAR_CLIENT_ID=your_google_client_id
+GOOGLE_CALENDAR_CLIENT_SECRET=your_google_client_secret
+
+# =============================================================================
+# DEVELOPMENT SETTINGS
+# =============================================================================
+
+# Debug Mode (Development only)
+DEBUG=false
+DEBUG_DATABASE=false
+DEBUG_EMAIL=false
+
+# Development Tools
+ENABLE_SWAGGER=true
+ENABLE_GRAPHQL_PLAYGROUND=false
+ENABLE_DEV_TOOLS=false
+
+# Test Configuration
+TEST_DATABASE_URI=mongodb://localhost:27017/coresis_test
+TEST_EMAIL_ENABLED=false
+
+# =============================================================================
+# PRODUCTION SETTINGS
+# =============================================================================
+
+# Security Headers
+ENABLE_SECURITY_HEADERS=true
+ENABLE_HTTPS_REDIRECT=true
+ENABLE_HSTS=true
+HSTS_MAX_AGE=31536000
+
+# Compression
+ENABLE_COMPRESSION=true
+COMPRESSION_LEVEL=6
+
+# Caching
+ENABLE_CACHING=true
+CACHE_TTL=3600
+REDIS_URL=redis://localhost:6379
+
+# Backup Configuration
+BACKUP_ENABLED=true
+BACKUP_SCHEDULE=0 2 * * *
+BACKUP_RETENTION_DAYS=30
+BACKUP_PATH=./backups
+
+# =============================================================================
+# STAGING ENVIRONMENT OVERRIDES
+# =============================================================================
+
+# Uncomment and modify for staging environment
+# NODE_ENV=staging
+# CLIENT_URL=https://staging.coresis.app
+# API_URL=https://staging-api.coresis.app
+# MONGO_URI=mongodb://staging_user:password@localhost:27017/coresis_staging
+# SMTP_HOST=smtp.mailtrap.io
+# SMTP_PORT=2525
+# SMTP_USER=your_mailtrap_user
+# SMTP_PASS=your_mailtrap_password
+
+# =============================================================================
+# DEVELOPMENT ENVIRONMENT OVERRIDES
+# =============================================================================
+
+# Uncomment and modify for development environment
+# NODE_ENV=development
+# CLIENT_URL=http://localhost:3000
+# API_URL=http://localhost:5000
+# MONGO_URI=mongodb://localhost:27017/coresis_dev
+# DEBUG=true
+# DEBUG_DATABASE=true
+# DEBUG_EMAIL=true
+# ENABLE_DEV_TOOLS=true
+
+# =============================================================================
+# MONITORING & ALERTS
+# =============================================================================
+
+# Health Check Configuration
+HEALTH_CHECK_ENABLED=true
+HEALTH_CHECK_INTERVAL=30000
+HEALTH_CHECK_TIMEOUT=5000
+
+# Alert Configuration
+ALERT_EMAIL=support@coresis.app
+ALERT_SLACK_WEBHOOK=https://hooks.slack.com/services/your/webhook/url
+ALERT_DISCORD_WEBHOOK=https://discord.com/api/webhooks/your/webhook/url
+
+# Uptime Monitoring
+UPTIME_MONITORING_ENABLED=true
+UPTIME_CHECK_INTERVAL=60000
+
+# =============================================================================
+# CUSTOMIZATION
+# =============================================================================
+
+# Branding
+BRAND_NAME=CoreSIS
+BRAND_TAGLINE=Powering Pathways. Fueling Futures.
+BRAND_LOGO_URL=https://coresis.app/logo.png
+BRAND_FAVICON_URL=https://coresis.app/favicon.ico
+
+# Contact Information
+CONTACT_EMAIL=support@coresis.app
+CONTACT_PHONE=+1-555-123-4567
+CONTACT_ADDRESS=123 Education St, Learning City, LC 12345
+
+# Social Media
+SOCIAL_FACEBOOK=https://facebook.com/coresis
+SOCIAL_TWITTER=https://twitter.com/coresis
+SOCIAL_LINKEDIN=https://linkedin.com/company/coresis
+
+# =============================================================================
+# LEGAL & COMPLIANCE
+# =============================================================================
+
+# Privacy Policy
+PRIVACY_POLICY_URL=https://coresis.app/privacy
+TERMS_OF_SERVICE_URL=https://coresis.app/terms
+
+# Data Retention
+DATA_RETENTION_DAYS=2555
+AUDIT_LOG_RETENTION_DAYS=3650
+
+# GDPR Compliance
+GDPR_ENABLED=true
+GDPR_DATA_EXPORT_ENABLED=true
+GDPR_DATA_DELETION_ENABLED=true
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+# IMPORTANT SECURITY NOTES:
+# 1. Change all default passwords and secrets
+# 2. Use strong, unique passwords for all services
+# 3. Enable HTTPS in production
+# 4. Regularly update dependencies
+# 5. Monitor logs for suspicious activity
+# 6. Implement proper backup strategies
+# 7. Use environment-specific configurations
+
+# DEPLOYMENT CHECKLIST:
+# 1. Update all sensitive credentials
+# 2. Configure email settings
+# 3. Set up database connections
+# 4. Configure file storage
+# 5. Set up monitoring and alerts
+# 6. Test all integrations
+# 7. Verify security settings
+# 8. Run health checks
+# 9. Test backup and restore procedures
+# 10. Document deployment configuration 

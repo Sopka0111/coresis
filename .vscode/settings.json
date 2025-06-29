@@ -1,0 +1,36 @@
+{
+  "vetur.validation.template": false,
+  "vetur.validation.script": false,
+  "vetur.validation.style": false,
+  "vetur.useWorkspaceDependencies": true,
+  "vetur.experimental.templateInterpolationService": true,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "vue": "html"
+  },
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.suggest.insertMode": "replace",
+  "vue.codeActions.enabled": true,
+  "vue.complete.casing.props": "camel",
+  "vue.complete.casing.tags": "pascal",
+  "vue.inlayHints.optionsWrapper": true,
+  "vue.inlayHints.vBindShorthand": true,
+  "vue.inlayHints.vFor": true,
+  "vue.inlayHints.vIf": true,
+  "vue.inlayHints.vModel": true,
+  "vue.inlayHints.vSlot": true,
+  "vue.preferences.quoteStyle": "single",
+  "vue.preferences.semi": false,
+  "vue.preferences.tabSize": 2,
+  "vue.preferences.useTabs": false,
+  "vue.preferences.printWidth": 80,
+  "vue.preferences.trailingComma": "es5",
+  "vue.preferences.bracketSpacing": true,
+  "vue.preferences.arrowParens": "avoid"
+} 
