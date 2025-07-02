@@ -14,6 +14,9 @@ import accountingRoutes from './routes/accounting.routes.js'
 import reportsRoutes from './routes/reports.routes.js'
 import managementRoutes from './routes/management.routes.js'
 import setupRoutes from './routes/setup.routes.js'
+import authRoutes from './routes/auth.js'
+import leadsRoutes from './routes/leads.js'
+import dealsRoutes from './routes/deals.js'
 
 // Load environment variables
 dotenv.config()
@@ -26,15 +29,15 @@ app.use(helmet())
 
 // Rate limiting
 const limiter = rateLimit({
-  windowMs: (process.env.RATE_LIMIT_WINDOW || 15) * 60 * 1000, // 15 minutes
-  max: process.env.RATE_LIMIT_MAX || 100, // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
   message: 'Too many requests from this IP, please try again later.'
 })
 app.use(limiter)
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: process.env.CLIENT_URL || 'http://localhost:3000',
   credentials: true
 }))
 
@@ -74,6 +77,9 @@ app.use('/api/accounting', accountingRoutes)
 app.use('/api/reports', reportsRoutes)
 app.use('/api/management', managementRoutes)
 app.use('/api/setup', setupRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/leads', leadsRoutes)
+app.use('/api/deals', dealsRoutes)
 
 // 404 handler
 app.use('*', (req, res) => {

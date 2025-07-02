@@ -1,211 +1,338 @@
-# Massage School Management Dashboard
+# School Transportation CRM System
 
-A comprehensive Vue 3 dashboard for managing massage school operations, built with Vuetify 3, Chart.js, and TypeScript.
+A comprehensive Customer Relationship Management (CRM) system specifically designed for school transportation sales and marketing teams. This application helps manage leads, track deals, automate outreach, and centralize client communications with school districts and educational institutions.
 
-## 🚀 Features
+## 🚌 Overview
 
-### Core Dashboard
-- **Real-time Analytics**: Interactive charts and statistics
-- **Student Management**: Complete student lifecycle management
-- **Financial Tracking**: Comprehensive financial and accounting tools
-- **Role-based Access Control**: Secure access based on user roles
-- **Responsive Design**: Mobile-first approach with Vuetify 3
+This CRM system is tailored for the education, EdTech, and school transportation industry, providing specialized tools to manage relationships with school districts, track transportation deals, and streamline sales processes.
 
-### Role-Based Access Control
-- **Admin**: Full system access and configuration
-- **Finance**: Financial management and accounting tools
-- **Registrar**: Academic records and student management
-- **Instructor**: Course and student interaction tools
-- **Student**: Limited access to personal information
+## 🛠 Tech Stack
 
-### Advanced Features
-- **PDF Export**: Generate invoices and financial reports using jsPDF
-- **Real-time Data**: Live updates and notifications
-- **Advanced Filtering**: Multi-criteria search and filtering
-- **Interactive Charts**: Dynamic data visualization with Chart.js
+### Frontend
+- **Vue 3** - Progressive JavaScript framework
+- **Vuetify 3** - Material Design component library
+- **Chart.js** - Data visualization and analytics
+- **Pinia** - State management
+- **Vue Router** - Client-side routing
+- **Axios** - HTTP client
 
-## 📊 Dashboard Components
+### Backend
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web application framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **JWT** - Authentication tokens
+- **bcrypt** - Password hashing
 
-### Student Management
-- **StudentTable**: Comprehensive student listing with advanced filtering
-- **StudentDetailCard**: Detailed student information display
-- **StudentFilterCard**: Advanced filtering and search capabilities
-- **StudentStatsChart**: Visual student statistics and trends
-- **StatusChart**: Student status distribution visualization
+## 🎨 Design
 
-### Financial Management
-- **FinancePage**: Complete financial overview and management
-- **FinanceChart**: Revenue and expense visualization
-- **BalanceChart**: Financial balance tracking
-- **FinanceFilterBar**: Financial data filtering tools
-- **StudentFinanceCard**: Individual student financial information
+- **Color Palette**: Light green and blue theme
+- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Material Design**: Clean, intuitive user interface
+- **Accessibility**: WCAG 2.1 compliant
 
-### Accounting System
-- **AccountingPage**: Comprehensive accounting management
-- **AccountingTable**: Transaction listing with advanced features
-- **AccountingFilterBar**: Multi-criteria transaction filtering
-- **TransactionDetailCard**: Detailed transaction information
-- **AccountingSummaryChart**: Financial summary visualization
+## 👥 User Roles & Permissions
 
-### Placement Management
-- **PlacementPage**: Student placement and employment tracking
-- **PlacementTable**: Placement data with filtering and sorting
-- **PlacementFilterBar**: Advanced placement data filtering
-- **StudentPlacementCard**: Individual student placement details
-- **PlacementSummaryChart**: Placement outcomes visualization
+### Admin
+- Full system access
+- User management
+- System configuration
+- All CRM features
 
-### Reports System
-- **ReportsPage**: Comprehensive reporting interface
-- **Role-based Report Access**: Reports filtered by user permissions
-- **Multiple Export Formats**: PDF, CSV, XLSX export options
-- **Scheduled Reports**: Email-based report scheduling
-- **Search and Filter**: Find reports by category or keyword
+### Sales Rep
+- Lead and deal management
+- Account and contact management
+- Activity tracking
+- Task management
+- Pipeline reporting
 
-### Management Portal
-- **ManagementPage**: Administrative tools and system management
-- **Dynamic Role Switching**: Real-time role-based interface updates
-- **Quick Actions**: Rapid access to common administrative tasks
-- **Section-based Organization**: Logical grouping of management tools
-- **Permission-based Access**: Tools filtered by user role
+### Marketing Agent
+- Lead generation and qualification
+- Campaign management
+- Activity logging
+- Basic reporting
 
-### System Setup
-- **SetupPage**: Comprehensive system configuration interface
-- **Setup Progress Tracking**: Visual progress indicators
-- **Quick Setup Wizards**: Guided configuration processes
-- **Category-based Organization**: Logical grouping of settings
-- **Configuration Status**: Real-time setup completion tracking
+## 📋 Core Features
 
-## 🛠️ Technical Stack
+### 🎯 Lead Management
+- Capture leads from multiple sources (events, referrals, website, etc.)
+- Lead scoring and qualification
+- Status tracking: New → Contacted → Qualified → Proposal → Closed Won/Lost
+- Lead conversion to accounts and contacts
+- Advanced filtering and search
 
-- **Vue 3**: Progressive JavaScript framework
-- **Vuetify 3**: Material Design component library
-- **Chart.js**: Interactive chart library
-- **TypeScript**: Type-safe JavaScript development
-- **jsPDF**: PDF generation for reports and invoices
-- **Vue Router**: Client-side routing
-- **Composition API**: Modern Vue 3 reactivity system
+### 🏢 Account Management
+- School district and organization profiles
+- Contact management within accounts
+- Relationship tracking
+- Account hierarchy support
+- Revenue tracking
 
-## 📁 Project Structure
+### 👤 Contact Management
+- Individual contact profiles
+- Role-based categorization (Decision Maker, Influencer, User, etc.)
+- Communication preferences
+- Engagement scoring
+- Interaction history
 
-```
-src/
-├── components/          # Reusable Vue components
-│   ├── charts/         # Chart.js components
-│   ├── cards/          # Information display cards
-│   ├── tables/         # Data table components
-│   └── filters/        # Filter and search components
-├── pages/              # Main application pages
-│   ├── Dashboard.vue
-│   ├── StudentManagement.vue
-│   ├── FinancePage.vue
-│   ├── AccountingPage.vue
-│   ├── PlacementPage.vue
-│   ├── ReportsPage.vue
-│   ├── ManagementPage.vue
-│   └── SetupPage.vue
-├── composables/        # Reusable composition functions
-├── layouts/            # Page layout components
-└── plugins/            # Vue plugins and configurations
-```
+### 💼 Deal Pipeline
+- Visual Kanban board for deal tracking
+- Customizable sales stages
+- Probability and value tracking
+- Deal progression automation
+- Win/loss analysis
 
-## 🚀 Getting Started
+### ✅ Task Management
+- Task assignment and tracking
+- Due date reminders
+- Recurring tasks
+- Priority levels
+- Task automation
+
+### 📊 Activity Logging
+- Call, email, meeting, and note tracking
+- Automatic activity creation
+- Communication history
+- Follow-up scheduling
+- Attachment support
+
+### 📈 Reporting & Analytics
+- Sales pipeline analytics
+- Lead source performance
+- Conversion rate tracking
+- Revenue forecasting
+- User performance metrics
+- Custom dashboard views
+
+### 🔄 Automation Tools
+- Lead scoring automation
+- Task generation for new deals
+- Follow-up reminders
+- Email templates
+- Workflow automation
+
+## 🚀 Installation
 
 ### Prerequisites
-- Node.js (v16 or higher)
+- Node.js (v18 or higher)
+- MongoDB (v5 or higher)
 - npm or yarn
 
-### Installation
+### Backend Setup
+
+1. Navigate to the backend directory:
 ```bash
-# Clone the repository
-git clone <repository-url>
+cd sis-backend
+```
 
-# Navigate to project directory
-cd massage-school-dashboard
-
-# Install dependencies
+2. Install dependencies:
+```bash
 npm install
+```
 
-# Start development server
+3. Create environment file:
+```bash
+cp env.example .env
+```
+
+4. Configure environment variables in `.env`:
+```env
+# Database
+MONGODB_URI=mongodb://localhost:27017/school-transport-crm
+DB_NAME=school_transport_crm
+
+# JWT
+JWT_SECRET=your_jwt_secret_key_here
+
+# Server
+PORT=3001
+NODE_ENV=development
+
+# CORS
+CLIENT_URL=http://localhost:3000
+
+# Email (Optional)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+```
+
+5. Start the server:
+```bash
 npm run dev
 ```
 
-### Building for Production
+### Frontend Setup
+
+1. Install dependencies:
 ```bash
-# Build the application
+npm install
+```
+
+2. Create environment file:
+```bash
+cp .env.example .env
+```
+
+3. Configure environment variables:
+```env
+VITE_API_URL=http://localhost:3001/api
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+## 📚 API Documentation
+
+### Authentication Endpoints
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
+- `GET /api/auth/profile` - Get user profile
+- `PUT /api/auth/profile` - Update user profile
+
+### Lead Endpoints
+- `GET /api/leads` - Get leads with filtering
+- `POST /api/leads` - Create new lead
+- `GET /api/leads/:id` - Get lead details
+- `PUT /api/leads/:id` - Update lead
+- `POST /api/leads/:id/convert` - Convert lead to account
+- `DELETE /api/leads/:id` - Delete lead
+
+### Deal Endpoints
+- `GET /api/deals` - Get deals with filtering
+- `GET /api/deals/kanban` - Get deals in Kanban format
+- `POST /api/deals` - Create new deal
+- `GET /api/deals/:id` - Get deal details
+- `PUT /api/deals/:id` - Update deal
+- `PUT /api/deals/:id/close-won` - Close deal as won
+- `PUT /api/deals/:id/close-lost` - Close deal as lost
+
+## 🎯 Usage Examples
+
+### Creating a New Lead
+1. Navigate to Leads section
+2. Click "Add New Lead"
+3. Fill in lead information:
+   - Name and contact details
+   - School district information
+   - Lead source
+   - Estimated value
+4. Assign to team member
+5. Save and begin qualification process
+
+### Converting a Lead
+1. Open qualified lead
+2. Click "Convert Lead"
+3. Create associated account (school district)
+4. Contact is automatically created
+5. Lead status updated to "Closed Won"
+
+### Managing Deal Pipeline
+1. Use Kanban view for visual pipeline management
+2. Drag deals between stages
+3. Update deal values and probabilities
+4. Set close dates and next steps
+5. Track win/loss reasons
+
+### Generating Reports
+1. Access Reports section
+2. Select date range and filters
+3. View metrics:
+   - Pipeline value
+   - Conversion rates
+   - Lead source performance
+   - Team performance
+
+## � Mobile Responsiveness
+
+The CRM is fully responsive and optimized for:
+- Desktop computers (1200px+)
+- Tablets (768px - 1199px)
+- Mobile phones (320px - 767px)
+
+## 🔒 Security Features
+
+- JWT-based authentication
+- Role-based access control
+- Password hashing with bcrypt
+- Input validation and sanitization
+- Rate limiting
+- CORS protection
+- Helmet security headers
+
+## 🎨 Customization
+
+### Theme Customization
+The color scheme can be customized in `src/plugins/vuetify.js`:
+- Primary color: Light Green (#4CAF50)
+- Secondary color: Blue (#2196F3)
+- Accent colors for different states
+
+### Adding Custom Fields
+1. Update database models in `sis-backend/models/`
+2. Add fields to frontend forms
+3. Update API endpoints as needed
+
+## 🔧 Deployment
+
+### Production Build
+```bash
+# Frontend
 npm run build
 
-# Preview production build
-npm run preview
+# Backend
+npm start
 ```
 
-## 🔧 Configuration
+### Environment Variables for Production
+Update `.env` files with production values:
+- Database URLs
+- JWT secrets
+- Email configuration
+- Domain settings
 
-### Environment Variables
-Create a `.env` file in the root directory:
-```env
-VITE_API_BASE_URL=your_api_base_url
-VITE_APP_TITLE=Massage School Dashboard
-```
+## 📊 Demo Data
 
-### Role Configuration
-User roles are managed through the `useAuth` composable:
-- Modify `src/composables/useAuth.ts` to integrate with your authentication system
-- Update role permissions in individual components as needed
-
-## 📈 Features in Detail
-
-### Reports System
-The Reports page provides comprehensive reporting capabilities:
-
-- **Category-based Organization**: Reports organized by functional areas
-- **Role-based Access**: Reports filtered by user permissions
-- **Multiple Export Formats**: PDF, CSV, and XLSX export options
-- **Scheduled Reports**: Email-based report scheduling
-- **Search and Filter**: Find reports by category or keyword
-- **Quick Actions**: Rapid access to common reports
-
-### Management Portal
-The Management page offers administrative tools:
-
-- **Dynamic Role Switching**: Real-time interface updates based on role
-- **Section-based Organization**: Logical grouping of management tools
-- **Quick Actions**: Rapid access to common administrative tasks
-- **Permission-based Access**: Tools filtered by user role
-- **Status Indicators**: Visual status of system components
-
-### System Setup
-The Setup page provides comprehensive configuration:
-
-- **Setup Progress Tracking**: Visual progress indicators
-- **Quick Setup Wizards**: Guided configuration processes
-- **Category-based Organization**: Logical grouping of settings
-- **Configuration Status**: Real-time setup completion tracking
-- **Permission-based Access**: Settings filtered by user role
+The system includes demo credentials for testing:
+- **Admin**: admin@crm.com / admin123
+- **Sales Rep**: sales@crm.com / sales123
+- **Marketing Agent**: marketing@crm.com / marketing123
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-## 📝 License
+## � License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🆘 Support
+## 📞 Support
 
-For support and questions:
+For questions and support:
 - Create an issue in the repository
 - Contact the development team
-- Check the documentation for common solutions
+- Check the documentation wiki
 
-## 🔮 Roadmap
+## 🚀 Future Enhancements
 
-- [ ] Advanced analytics and reporting
-- [ ] Mobile application
-- [ ] API integration improvements
-- [ ] Enhanced security features
-- [ ] Performance optimizations
-- [ ] Additional chart types and visualizations 
+Planned features for future versions:
+- Email integration (Gmail, Outlook)
+- Calendar synchronization
+- Document management
+- Advanced reporting
+- Mobile applications
+- Integration with QuickBooks
+- HubSpot connector
+- SMS capabilities
+- AI-powered insights
+
+---
+
+Built with ❤️ for the school transportation industry 

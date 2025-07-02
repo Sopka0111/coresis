@@ -1,81 +1,229 @@
 <template>
   <v-app>
-    <!-- App Bar -->
-    <AppBar 
-      @toggle-drawer="toggleDrawer"
-      @logout="handleLogout"
-    />
-
     <!-- Navigation Drawer -->
-    <NavigationDrawer 
+    <v-navigation-drawer
       v-model="drawer"
-      @navigation="handleNavigation"
-      @logout="handleLogout"
-    />
+      :rail="rail"
+      permanent
+      @click="rail = false"
+      color="primary"
+      theme="dark"
+    >
+      <v-list-item
+        prepend-avatar="/logo.png"
+        :title="user?.fullName || 'CRM User'"
+        :subtitle="user?.role || 'User'"
+        nav
+      >
+        <template v-slot:append>
+          <v-btn
+            variant="text"
+            icon="mdi-chevron-left"
+            @click.stop="rail = !rail"
+            size="small"
+          ></v-btn>
+        </template>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list density="compact" nav>
+        <!-- Dashboard -->
+        <v-list-item
+          prepend-icon="mdi-view-dashboard"
+          title="Dashboard"
+          value="dashboard"
+          to="/dashboard"
+        ></v-list-item>
+
+        <!-- Leads -->
+        <v-list-item
+          prepend-icon="mdi-account-plus"
+          title="Leads"
+          value="leads"
+          to="/leads"
+        ></v-list-item>
+
+        <!-- Accounts -->
+        <v-list-item
+          prepend-icon="mdi-domain"
+          title="Accounts"
+          value="accounts"
+          to="/accounts"
+        ></v-list-item>
+
+        <!-- Contacts -->
+        <v-list-item
+          prepend-icon="mdi-account-group"
+          title="Contacts"
+          value="contacts"
+          to="/contacts"
+        ></v-list-item>
+
+        <!-- Deals -->
+        <v-list-item
+          prepend-icon="mdi-handshake"
+          title="Deals"
+          value="deals"
+          to="/deals"
+        ></v-list-item>
+
+        <!-- Tasks -->
+        <v-list-item
+          prepend-icon="mdi-checkbox-marked-circle"
+          title="Tasks"
+          value="tasks"
+          to="/tasks"
+        ></v-list-item>
+
+        <!-- Activities -->
+        <v-list-item
+          prepend-icon="mdi-timeline"
+          title="Activities"
+          value="activities"
+          to="/activities"
+        ></v-list-item>
+
+        <!-- Reports -->
+        <v-list-item
+          prepend-icon="mdi-chart-box"
+          title="Reports"
+          value="reports"
+          to="/reports"
+        ></v-list-item>
+
+        <v-divider class="my-2"></v-divider>
+
+        <!-- Settings (Admin only) -->
+        <v-list-item
+          v-if="user?.role === 'Admin'"
+          prepend-icon="mdi-cog"
+          title="Settings"
+          value="settings"
+          to="/settings"
+        ></v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <!-- App Bar -->
+    <v-app-bar elevation="1" color="white">
+      <v-app-bar-nav-icon
+        @click="drawer = !drawer"
+        class="d-lg-none"
+      ></v-app-bar-nav-icon>
+      
+      <v-app-bar-title class="text-primary font-weight-bold">
+        School Transportation CRM
+      </v-app-bar-title>
+
+      <v-spacer></v-spacer>
+
+      <!-- Search -->
+      <v-text-field
+        v-model="searchQuery"
+        prepend-inner-icon="mdi-magnify"
+        label="Search..."
+        variant="outlined"
+        density="compact"
+        hide-details
+        class="mr-4"
+        style="max-width: 300px"
+        @keyup.enter="performSearch"
+      ></v-text-field>
+
+      <!-- Notifications -->
+      <v-btn icon @click="showNotifications = !showNotifications">
+        <v-badge
+          :content="notificationCount"
+          :model-value="notificationCount > 0"
+          color="error"
+        >
+          <v-icon>mdi-bell</v-icon>
+        </v-badge>
+      </v-btn>
+
+      <!-- User Menu -->
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn icon v-bind="props">
+            <v-avatar size="32">
+              <v-img
+                v-if="user?.avatar"
+                :src="user.avatar"
+                :alt="user.fullName"
+              ></v-img>
+              <v-icon v-else>mdi-account-circle</v-icon>
+            </v-avatar>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item to="/profile">
+            <v-list-item-title>Profile</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="logout">
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
 
     <!-- Main Content -->
     <v-main>
-      <v-container fluid class="pa-0">
-        <!-- Role Selector -->
-        <RoleSelector 
-          v-model="currentRole"
-          @role-change="handleRoleChange"
-          class="ma-4"
-        />
-
-        <!-- Page Content -->
-        <div class="pa-4">
-          <!-- Dashboard -->
-          <Dashboard v-if="currentPage === 'dashboard'" />
-          
-          <!-- Admissions -->
-          <Admissions v-else-if="currentPage === 'admissions'" />
-          
-          <!-- Registrar -->
-          <RegistrarPage v-else-if="currentPage === 'registrar'" />
-          
-          <!-- Finance -->
-          <FinancePage v-else-if="currentPage === 'finance'" />
-          
-          <!-- Accounting -->
-          <AccountingPage v-else-if="currentPage === 'accounting'" />
-          
-          <!-- Placement -->
-          <PlacementPage v-else-if="currentPage === 'placement'" />
-          
-          <!-- Reports -->
-          <ReportsPage v-else-if="currentPage === 'reports'" />
-          
-          <!-- Management -->
-          <ManagementPage v-else-if="currentPage === 'management'" />
-          
-          <!-- Setup -->
-          <SetupPage v-else-if="currentPage === 'setup'" />
-          
-          <!-- Student Management -->
-          <StudentManagement v-else-if="currentPage === 'student-management'" />
-          
-          <!-- Default Dashboard -->
-          <Dashboard v-else />
-        </div>
+      <v-container fluid class="pa-6">
+        <router-view />
       </v-container>
     </v-main>
 
-    <!-- Global Snackbar for notifications -->
-    <v-snackbar
-      v-model="showSnackbar"
-      :color="snackbarColor"
-      :timeout="3000"
-      location="top"
+    <!-- Notifications Sidebar -->
+    <v-navigation-drawer
+      v-model="showNotifications"
+      location="right"
+      temporary
+      width="400"
     >
-      {{ snackbarMessage }}
-      
-      <template #actions>
-        <v-btn
-          color="white"
-          text
-          @click="showSnackbar = false"
+      <v-toolbar color="primary" dark>
+        <v-toolbar-title>Notifications</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon @click="showNotifications = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </v-toolbar>
+
+      <v-list>
+        <v-list-item
+          v-for="notification in notifications"
+          :key="notification.id"
+          class="border-b"
         >
+          <template v-slot:prepend>
+            <v-icon :color="notification.type">
+              {{ getNotificationIcon(notification.type) }}
+            </v-icon>
+          </template>
+          <v-list-item-title>{{ notification.title }}</v-list-item-title>
+          <v-list-item-subtitle>{{ notification.message }}</v-list-item-subtitle>
+          <v-list-item-subtitle class="text-caption">
+            {{ formatTime(notification.createdAt) }}
+          </v-list-item-subtitle>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <!-- Loading Overlay -->
+    <v-overlay v-model="loading" class="align-center justify-center">
+      <v-progress-circular color="primary" indeterminate size="64"></v-progress-circular>
+    </v-overlay>
+
+    <!-- Snackbar for Messages -->
+    <v-snackbar
+      v-model="snackbar.show"
+      :color="snackbar.color"
+      :timeout="snackbar.timeout"
+      location="top right"
+    >
+      {{ snackbar.message }}
+      <template v-slot:actions>
+        <v-btn variant="text" @click="snackbar.show = false">
           Close
         </v-btn>
       </template>
@@ -83,126 +231,87 @@
   </v-app>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { useAuth } from '@/composables/useAuth'
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useCrmStore } from '@/stores/crm'
+import { storeToRefs } from 'pinia'
 
-// Import components
-import AppBar from '@/components/AppBar.vue'
-import NavigationDrawer from '@/components/NavigationDrawer.vue'
-import RoleSelector from '@/components/RoleSelector.vue'
-import Dashboard from '@/pages/Dashboard.vue'
-import Admissions from '@/pages/Admissions.vue'
-import RegistrarPage from '@/pages/RegistrarPage.vue'
-import FinancePage from '@/pages/FinancePage.vue'
-import AccountingPage from '@/pages/AccountingPage.vue'
-import PlacementPage from '@/pages/PlacementPage.vue'
-import ReportsPage from '@/pages/ReportsPage.vue'
-import ManagementPage from '@/pages/ManagementPage.vue'
-import SetupPage from '@/pages/SetupPage.vue'
-import StudentManagement from '@/pages/StudentManagement.vue'
+const router = useRouter()
+const crmStore = useCrmStore()
+const { user, loading, snackbar } = storeToRefs(crmStore)
 
-// Composables
-const { userRole, setUserRole } = useAuth()
-
-// Reactive data
+// Navigation state
 const drawer = ref(true)
-const currentPage = ref('dashboard')
-const currentRole = ref(userRole.value)
-const showSnackbar = ref(false)
-const snackbarMessage = ref('')
-const snackbarColor = ref('success')
+const rail = ref(false)
+const showNotifications = ref(false)
+const searchQuery = ref('')
+
+// Notifications (mock data for now)
+const notifications = ref([
+  {
+    id: 1,
+    type: 'info',
+    title: 'New Lead Assigned',
+    message: 'You have been assigned a new lead from Springfield School District',
+    createdAt: new Date()
+  },
+  {
+    id: 2,
+    type: 'warning',
+    title: 'Task Due Soon',
+    message: 'Follow up call with Jefferson Elementary due in 2 hours',
+    createdAt: new Date()
+  },
+  {
+    id: 3,
+    type: 'success',
+    title: 'Deal Closed Won',
+    message: 'Congratulations! Madison County deal closed for $75,000',
+    createdAt: new Date()
+  }
+])
+
+const notificationCount = computed(() => notifications.value.length)
 
 // Methods
-const toggleDrawer = (): void => {
-  drawer.value = !drawer.value
-}
-
-const handleNavigation = (href: string): void => {
-  // Map navigation hrefs to page components
-  const pageMap: Record<string, string> = {
-    'dashboard': 'dashboard',
-    'admissions': 'admissions',
-    'registrar': 'registrar',
-    'finance': 'finance',
-    'accounting': 'accounting',
-    'placement': 'placement',
-    'reports': 'reports',
-    'management': 'management',
-    'setup': 'setup',
-    'student-management': 'student-management'
-  }
-  
-  const newPage = pageMap[href]
-  if (newPage) {
-    currentPage.value = newPage
-    showNotification(`Navigated to ${href}`, 'info')
+const performSearch = () => {
+  if (searchQuery.value.trim()) {
+    router.push(`/search?q=${encodeURIComponent(searchQuery.value)}`)
   }
 }
 
-const handleRoleChange = (newRole: string): void => {
-  setUserRole(newRole)
-  currentRole.value = newRole
-  showNotification(`Role changed to ${newRole}`, 'success')
+const logout = async () => {
+  await crmStore.logout()
+  router.push('/login')
 }
 
-const handleLogout = (): void => {
-  showNotification('Logging out...', 'warning')
-  // Add your logout logic here
-  setTimeout(() => {
-    showNotification('Logged out successfully', 'success')
-  }, 1000)
+const getNotificationIcon = (type) => {
+  switch (type) {
+    case 'info': return 'mdi-information'
+    case 'warning': return 'mdi-alert'
+    case 'success': return 'mdi-check-circle'
+    case 'error': return 'mdi-alert-circle'
+    default: return 'mdi-bell'
+  }
 }
 
-const showNotification = (message: string, color: string = 'success'): void => {
-  snackbarMessage.value = message
-  snackbarColor.value = color
-  showSnackbar.value = true
+const formatTime = (date) => {
+  return new Date(date).toLocaleTimeString()
 }
 
-// Lifecycle
-onMounted(() => {
-  showNotification('Welcome to Massage School Management Dashboard!', 'success')
+onMounted(async () => {
+  // Load user profile on app start
+  await crmStore.loadUserProfile()
 })
 </script>
 
-<style>
-/* Global styles */
-.v-application {
-  font-family: 'Roboto', sans-serif;
+<style scoped>
+.v-navigation-drawer {
+  z-index: 1006;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Smooth transitions */
-.v-card {
-  transition: all 0.3s ease;
-}
-
-.v-btn {
-  transition: all 0.2s ease;
-}
-
-/* Responsive adjustments */
-@media (max-width: 960px) {
-  .v-container {
-    padding: 8px !important;
-  }
+.border-b {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 </style> 

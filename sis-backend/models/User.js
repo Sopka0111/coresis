@@ -42,9 +42,8 @@ const userSchema = new mongoose.Schema({
   // Role and Permissions
   role: {
     type: String,
-    enum: ['admin', 'registrar', 'finance', 'instructor', 'student'],
-    required: [true, 'Role is required'],
-    default: 'student'
+    enum: ['Admin', 'Sales Rep', 'Marketing Agent'],
+    default: 'Sales Rep'
   },
   permissions: [{
     type: String,
@@ -69,7 +68,8 @@ const userSchema = new mongoose.Schema({
   // Department and Position
   department: {
     type: String,
-    enum: ['Admissions', 'Registrar', 'Finance', 'Placement', 'Academic', 'Administration']
+    enum: ['Admissions', 'Registrar', 'Finance', 'Placement', 'Academic', 'Administration'],
+    trim: true
   },
   position: {
     type: String,
@@ -115,7 +115,8 @@ const userSchema = new mongoose.Schema({
   
   // Profile
   avatar: {
-    type: String
+    type: String,
+    default: ''
   },
   bio: {
     type: String,
@@ -151,6 +152,14 @@ const userSchema = new mongoose.Schema({
   },
   lastModifiedBy: {
     type: String
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
 }, {
   timestamps: true,
@@ -209,7 +218,7 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
 // Instance method to get default permissions
 userSchema.methods.getDefaultPermissions = function(role) {
   const permissionMap = {
-    admin: [
+    Admin: [
       'view_students', 'edit_students', 'delete_students',
       'view_finance', 'edit_finance',
       'view_reports', 'edit_reports',
@@ -217,23 +226,15 @@ userSchema.methods.getDefaultPermissions = function(role) {
       'view_courses', 'edit_courses',
       'view_users', 'edit_users', 'system_admin'
     ],
-    registrar: [
+    'Sales Rep': [
       'view_students', 'edit_students',
       'view_courses', 'edit_courses',
       'view_reports'
     ],
-    finance: [
+    'Marketing Agent': [
       'view_students',
       'view_finance', 'edit_finance',
       'view_reports'
-    ],
-    instructor: [
-      'view_students',
-      'view_courses', 'edit_courses',
-      'view_reports'
-    ],
-    student: [
-      'view_students'
     ]
   }
   
@@ -283,5 +284,13 @@ userSchema.statics.findActive = function() {
 userSchema.statics.findByRole = function(role) {
   return this.find({ role, isActive: true })
 }
+
+// JSON transform
+userSchema.set('toJSON', {
+  transform: function(doc, ret) {
+    delete ret.password;
+    return ret;
+  }
+});
 
 export default mongoose.model('User', userSchema) 

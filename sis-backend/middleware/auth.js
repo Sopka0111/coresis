@@ -179,4 +179,124 @@ export const financeOnly = protect(['admin', 'finance'])
 export const registrarOnly = protect(['admin', 'registrar'])
 
 // Instructor only middleware
-export const instructorOnly = protect(['admin', 'instructor']) 
+export const instructorOnly = protect(['admin', 'instructor'])
+
+// Verify JWT token middleware
+export const verifyToken = async (req, res, next) => {
+  try {
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+    
+    if (!token) {
+      return res.status(401).json({ message: 'Access denied. No token provided.' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'crm_secret_key');
+    const user = await User.findById(decoded.userId).select('-password');
+    
+    if (!user || !user.isActive) {
+      return res.status(401).json({ message: 'Invalid token. User not found or inactive.' });
+    }
+
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error('Token verification error:', error);
+    res.status(401).json({ message: 'Invalid token.' });
+  }
+};
+
+// Role-based access control middleware
+export const requireRole = (roles) => {
+  return (req, res, next) => {
+    if (!req.user) {
+      return res.status(401).json({ message: 'User not authenticated.' });
+    }
+
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({ 
+        message: `Access denied. Required roles: ${roles.join(', ')}. Your role: ${req.user.role}` 
+      });
+    }
+
+    next();
+  };
+};
+
+// Admin only middleware
+export const requireAdmin = requireRole(['Admin']);
+
+// Sales and Admin middleware
+export const requireSalesOrAdmin = requireRole(['Admin', 'Sales Rep']);
+
+// All authenticated users middleware (same as verifyToken but more semantic)
+export const requireAuth = verifyToken;
+
+// Check if user can access specific record (based on assignment)
+export const checkRecordAccess = (model) => {
+  return async (req, res, next) => {
+    try {
+      const recordId = req.params.id;
+      const userId = req.user._id;
+      const userRole = req.user.role;
+
+      // Admin can access all records
+      if (userRole === 'Admin') {
+        return next();
+      }
+
+      // Find the record
+      const Record = model;
+      const record = await Record.findById(recordId);
+
+      if (!record) {
+        return res.status(404).json({ message: 'Record not found.' });
+      }
+
+      // Check if user has access to this record
+      const hasAccess = 
+        record.assignedTo?.toString() === userId.toString() ||
+        record.createdBy?.toString() === userId.toString() ||
+        record.accountOwner?.toString() === userId.toString();
+
+      if (!hasAccess) {
+        return res.status(403).json({ 
+          message: 'Access denied. You can only access records assigned to you.' 
+        });
+      }
+
+      req.record = record;
+      next();
+    } catch (error) {
+      console.error('Record access check error:', error);
+      res.status(500).json({ message: 'Server error during access check.' });
+    }
+  };
+};
+
+// Filter records based on user role and assignment
+export const filterUserRecords = (req, res, next) => {
+  if (req.user.role === 'Admin') {
+    // Admin can see all records
+    req.userFilter = {};
+  } else {
+    // Non-admin users can only see their assigned records
+    req.userFilter = {
+      $or: [
+        { assignedTo: req.user._id },
+        { createdBy: req.user._id },
+        { accountOwner: req.user._id }
+      ]
+    };
+  }
+  next();
+};
+
+export default {
+  verifyToken,
+  requireRole,
+  requireAdmin,
+  requireSalesOrAdmin,
+  requireAuth,
+  checkRecordAccess,
+  filterUserRecords
+}; 
