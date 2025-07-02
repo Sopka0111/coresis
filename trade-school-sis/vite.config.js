@@ -5,9 +5,14 @@ import path from 'path'
 export default defineConfig({
   plugins: [vue()],
   server: {
-    port: 4000,
+    port: 3000,
     host: '0.0.0.0',
-    open: false
+    open: false,
+    strictPort: true,
+    hmr: {
+      port: 3000,
+      host: '0.0.0.0'
+    }
   },
   resolve: {
     alias: {
