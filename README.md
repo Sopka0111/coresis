@@ -1,211 +1,270 @@
-# Massage School Management Dashboard
+# Trade School Student Information System (SIS)
 
-A comprehensive Vue 3 dashboard for managing massage school operations, built with Vuetify 3, Chart.js, and TypeScript.
+A modern, responsive Student Information System specifically designed for trade schools, wellness institutes, and massage therapy programs. Built with Vue 3, Vuetify 3, and Chart.js with a beautiful wellness-inspired theme.
 
-## 🚀 Features
+## 🌿 Wellness-Inspired Design
 
-### Core Dashboard
-- **Real-time Analytics**: Interactive charts and statistics
-- **Student Management**: Complete student lifecycle management
-- **Financial Tracking**: Comprehensive financial and accounting tools
-- **Role-based Access Control**: Secure access based on user roles
-- **Responsive Design**: Mobile-first approach with Vuetify 3
+The system features a calming green color palette perfect for wellness and trade school environments:
+- **Primary**: #8BC34A (Light green)
+- **Secondary**: #C5E1A5 (Light green secondary)
+- **Background**: #F1F8E9 (Light green background)
+- **Accent**: #66BB6A (Complementary green)
 
-### Role-Based Access Control
-- **Admin**: Full system access and configuration
-- **Finance**: Financial management and accounting tools
-- **Registrar**: Academic records and student management
-- **Instructor**: Course and student interaction tools
-- **Student**: Limited access to personal information
+## ✨ Features
 
-### Advanced Features
-- **PDF Export**: Generate invoices and financial reports using jsPDF
-- **Real-time Data**: Live updates and notifications
-- **Advanced Filtering**: Multi-criteria search and filtering
-- **Interactive Charts**: Dynamic data visualization with Chart.js
+### 📊 Dashboard & Analytics
+- **Interactive Dashboard** with real-time statistics
+- **StatCard Components** with sparkline charts and trend indicators
+- **Activity Feed** showing recent system activities
+- **Chart.js Integration** for beautiful data visualizations
+- **Role-based Access Control** with different views for different user types
 
-## 📊 Dashboard Components
+### 👥 Student Management
+- **Complete Student Profiles** with photos, contact info, emergency contacts
+- **Academic Records** tracking courses, grades, and certifications
+- **Attendance Monitoring** with automated alerts
+- **Document Management** for transcripts, licenses, and IDs
+- **Student Notes System** for tracking progress and issues
 
-### Student Management
-- **StudentTable**: Comprehensive student listing with advanced filtering
-- **StudentDetailCard**: Detailed student information display
-- **StudentFilterCard**: Advanced filtering and search capabilities
-- **StudentStatsChart**: Visual student statistics and trends
-- **StatusChart**: Student status distribution visualization
+### 🎓 Student Portal
+- **Personal Dashboard** for students to view their information
+- **Schedule View** with calendar integration
+- **Grade Tracking** with GPA calculation and certification progress
+- **Financial Overview** including payment history and account balance
+- **Document Access** for downloading transcripts and certificates
+- **Announcements** from school administration
 
-### Financial Management
-- **FinancePage**: Complete financial overview and management
-- **FinanceChart**: Revenue and expense visualization
-- **BalanceChart**: Financial balance tracking
-- **FinanceFilterBar**: Financial data filtering tools
-- **StudentFinanceCard**: Individual student financial information
+### 💰 Financial Management
+- **Tuition Tracking** with payment schedules
+- **Account Balances** and outstanding amounts
+- **Payment History** with detailed transaction records
+- **Financial Aid Management** including scholarships and grants
+- **Invoice Generation** and automated billing
+- **Reporting** for financial analysis
 
-### Accounting System
-- **AccountingPage**: Comprehensive accounting management
-- **AccountingTable**: Transaction listing with advanced features
-- **AccountingFilterBar**: Multi-criteria transaction filtering
-- **TransactionDetailCard**: Detailed transaction information
-- **AccountingSummaryChart**: Financial summary visualization
+### 📝 Admissions & Lead Tracking
+- **Lead Management** with intake forms and custom fields
+- **Application Tracking** through different stages (inquiry → applied → enrolled)
+- **Follow-up Reminders** and automated workflows
+- **Conversion Analytics** from leads to enrolled students
+- **Source Tracking** for marketing ROI analysis
 
-### Placement Management
-- **PlacementPage**: Student placement and employment tracking
-- **PlacementTable**: Placement data with filtering and sorting
-- **PlacementFilterBar**: Advanced placement data filtering
-- **StudentPlacementCard**: Individual student placement details
-- **PlacementSummaryChart**: Placement outcomes visualization
+### 📅 Scheduling & Calendar
+- **Class Scheduling** with instructor and room assignments
+- **Room Availability** tracking
+- **Student Schedule View** with upcoming classes
+- **Instructor Calendars** with teaching assignments
+- **Event Management** for school activities
 
-### Reports System
-- **ReportsPage**: Comprehensive reporting interface
-- **Role-based Report Access**: Reports filtered by user permissions
-- **Multiple Export Formats**: PDF, CSV, XLSX export options
-- **Scheduled Reports**: Email-based report scheduling
-- **Search and Filter**: Find reports by category or keyword
+### 🔔 Communication Tools
+- **Announcement System** with priority levels and targeting
+- **In-app Messaging** between staff and students
+- **Email/SMS Integration** for notifications
+- **Notification Center** for important alerts
+- **Read Confirmations** for critical announcements
 
-### Management Portal
-- **ManagementPage**: Administrative tools and system management
-- **Dynamic Role Switching**: Real-time role-based interface updates
-- **Quick Actions**: Rapid access to common administrative tasks
-- **Section-based Organization**: Logical grouping of management tools
-- **Permission-based Access**: Tools filtered by user role
+### 📋 Academic Records
+- **Course Management** with credit tracking
+- **Grade Entry** and GPA calculation
+- **Certification Milestones** and progress tracking
+- **Transcript Generation** 
+- **Academic Probation** alerts and monitoring
 
-### System Setup
-- **SetupPage**: Comprehensive system configuration interface
-- **Setup Progress Tracking**: Visual progress indicators
-- **Quick Setup Wizards**: Guided configuration processes
-- **Category-based Organization**: Logical grouping of settings
-- **Configuration Status**: Real-time setup completion tracking
+### 📄 Document Center
+- **File Upload System** for student documents
+- **Document Categories** (transcripts, licenses, IDs, etc.)
+- **Download Management** with access controls
+- **Document Expiration** tracking for licenses
+- **Bulk Document Operations**
+
+### 📊 Compliance & Reporting
+- **Attendance Reports** with percentage calculations
+- **Completion Rate Analytics** by program
+- **Hours Logged** for certification requirements
+- **Export Capabilities** (PDF/Excel) for accreditation
+- **Custom Report Builder** for specific needs
 
 ## 🛠️ Technical Stack
 
-- **Vue 3**: Progressive JavaScript framework
-- **Vuetify 3**: Material Design component library
-- **Chart.js**: Interactive chart library
-- **TypeScript**: Type-safe JavaScript development
-- **jsPDF**: PDF generation for reports and invoices
-- **Vue Router**: Client-side routing
-- **Composition API**: Modern Vue 3 reactivity system
+### Frontend
+- **Vue 3** - Modern, reactive JavaScript framework
+- **Vuetify 3** - Material Design component library
+- **Chart.js** - Beautiful, responsive charts
+- **Vite** - Fast build tool and development server
+- **TypeScript/JavaScript** - Type-safe development
 
-## 📁 Project Structure
+### Components Architecture
+- **StatCard** - Configurable statistics cards with charts
+- **ActivityCard** - Activity feed with filtering and interactions
+- **AnnouncementModal** - Comprehensive announcement creation/viewing
+- **CalendarView** - Integrated calendar for scheduling
+- **DocumentsCard** - File management interface
 
-```
-src/
-├── components/          # Reusable Vue components
-│   ├── charts/         # Chart.js components
-│   ├── cards/          # Information display cards
-│   ├── tables/         # Data table components
-│   └── filters/        # Filter and search components
-├── pages/              # Main application pages
-│   ├── Dashboard.vue
-│   ├── StudentManagement.vue
-│   ├── FinancePage.vue
-│   ├── AccountingPage.vue
-│   ├── PlacementPage.vue
-│   ├── ReportsPage.vue
-│   ├── ManagementPage.vue
-│   └── SetupPage.vue
-├── composables/        # Reusable composition functions
-├── layouts/            # Page layout components
-└── plugins/            # Vue plugins and configurations
-```
+### State Management
+- **Composables** - Vue 3 composition API for data management
+- **useStudents** - Student and lead management
+- **useAuth** - Authentication and role-based access
+- **usePdfExport** - Report generation capabilities
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v16 or higher)
+- Node.js 16+ 
 - npm or yarn
 
 ### Installation
+
+1. Clone the repository:
 ```bash
-# Clone the repository
 git clone <repository-url>
+cd trade-school-sis
+```
 
-# Navigate to project directory
-cd massage-school-dashboard
-
-# Install dependencies
+2. Install dependencies:
+```bash
 npm install
+```
 
-# Start development server
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-### Building for Production
+4. Open your browser to `http://localhost:5173`
+
+### Build for Production
 ```bash
-# Build the application
 npm run build
-
-# Preview production build
-npm run preview
 ```
 
-## 🔧 Configuration
+## 📱 Responsive Design
 
-### Environment Variables
-Create a `.env` file in the root directory:
-```env
-VITE_API_BASE_URL=your_api_base_url
-VITE_APP_TITLE=Massage School Dashboard
+The system is fully responsive and works beautifully on:
+- **Desktop** - Full feature access with sidebars and multiple columns
+- **Tablet** - Optimized layouts with collapsible navigation
+- **Mobile** - Touch-friendly interface with bottom navigation
+
+## � User Roles & Permissions
+
+### Administrator
+- Full system access
+- User management
+- System configuration
+- All reports and analytics
+
+### Registrar
+- Student enrollment and records
+- Academic tracking
+- Transcript management
+- Attendance monitoring
+
+### Finance
+- Payment processing
+- Financial reporting
+- Account management
+- Billing and invoicing
+
+### Instructor
+- Grade entry
+- Attendance taking
+- Student progress viewing
+- Course material access
+
+### Student
+- Personal dashboard
+- Schedule viewing
+- Grade access
+- Document downloads
+- Announcement reading
+
+## 🎨 Customization
+
+### Theming
+The system uses Vuetify's theming system. Colors can be easily customized in `src/plugins/vuetify.js`:
+
+```javascript
+themes: {
+  light: {
+    colors: {
+      primary: '#8BC34A',      // Your brand color
+      secondary: '#C5E1A5',    // Secondary brand color
+      background: '#F1F8E9',   // Background color
+      // ... other colors
+    }
+  }
+}
 ```
 
-### Role Configuration
-User roles are managed through the `useAuth` composable:
-- Modify `src/composables/useAuth.ts` to integrate with your authentication system
-- Update role permissions in individual components as needed
+### Adding New Features
+The modular architecture makes it easy to add new features:
 
-## 📈 Features in Detail
+1. Create new components in `src/components/`
+2. Add new pages in `src/pages/`
+3. Extend composables in `src/composables/`
+4. Register components in `src/plugins/global-components.js`
 
-### Reports System
-The Reports page provides comprehensive reporting capabilities:
+## 📊 Sample Data
 
-- **Category-based Organization**: Reports organized by functional areas
-- **Role-based Access**: Reports filtered by user permissions
-- **Multiple Export Formats**: PDF, CSV, and XLSX export options
-- **Scheduled Reports**: Email-based report scheduling
-- **Search and Filter**: Find reports by category or keyword
-- **Quick Actions**: Rapid access to common reports
+The system comes with comprehensive sample data including:
+- Student records with realistic information
+- Course schedules and grades
+- Financial transactions
+- Announcements and activities
+- Lead tracking examples
 
-### Management Portal
-The Management page offers administrative tools:
+## 🔧 API Integration
 
-- **Dynamic Role Switching**: Real-time interface updates based on role
-- **Section-based Organization**: Logical grouping of management tools
-- **Quick Actions**: Rapid access to common administrative tasks
-- **Permission-based Access**: Tools filtered by user role
-- **Status Indicators**: Visual status of system components
+The system is designed to work with REST APIs. Update the composables to connect to your backend:
 
-### System Setup
-The Setup page provides comprehensive configuration:
+```javascript
+// In composables/useStudents.js
+const loadStudents = async () => {
+  const response = await fetch('/api/students')
+  const data = await response.json()
+  students.value = data
+}
+```
 
-- **Setup Progress Tracking**: Visual progress indicators
-- **Quick Setup Wizards**: Guided configuration processes
-- **Category-based Organization**: Logical grouping of settings
-- **Configuration Status**: Real-time setup completion tracking
-- **Permission-based Access**: Settings filtered by user role
+## 📈 Analytics & Reporting
+
+Built-in analytics include:
+- **Student Metrics** - Enrollment, retention, completion rates
+- **Financial Analytics** - Revenue, outstanding balances, payment trends
+- **Academic Performance** - GPA distributions, course success rates
+- **Attendance Patterns** - Chronic absenteeism, attendance trends
+- **Lead Conversion** - Marketing effectiveness, source analysis
+
+## 🛡️ Security Features
+
+- **Role-based Access Control** - Different permissions for different users
+- **Input Validation** - All forms include proper validation
+- **XSS Protection** - Safe rendering of user content
+- **File Upload Security** - File type and size restrictions
+- **Session Management** - Secure authentication handling
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch: `git checkout -b feature/new-feature`
+3. Commit your changes: `git commit -am 'Add new feature'`
+4. Push to the branch: `git push origin feature/new-feature`
+5. Submit a pull request
 
-## 📝 License
+## � License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## 🙏 Acknowledgments
 
-For support and questions:
-- Create an issue in the repository
-- Contact the development team
-- Check the documentation for common solutions
+- Vue.js team for the amazing framework
+- Vuetify team for the beautiful component library
+- Chart.js for the visualization capabilities
+- The open-source community for inspiration and support
 
-## 🔮 Roadmap
+## � Support
 
-- [ ] Advanced analytics and reporting
-- [ ] Mobile application
-- [ ] API integration improvements
-- [ ] Enhanced security features
-- [ ] Performance optimizations
-- [ ] Additional chart types and visualizations 
+For support, feature requests, or bug reports, please open an issue on GitHub or contact the development team.
+
+---
+
+**Built with ❤️ for trade schools and wellness institutes** 

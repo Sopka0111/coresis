@@ -55,6 +55,9 @@
           <!-- Student Management -->
           <StudentManagement v-else-if="currentPage === 'student-management'" />
           
+          <!-- Student Portal -->
+          <StudentPortal v-else-if="currentPage === 'student-portal'" />
+          
           <!-- Default Dashboard -->
           <Dashboard v-else />
         </div>
@@ -101,6 +104,7 @@ import ReportsPage from '@/pages/ReportsPage.vue'
 import ManagementPage from '@/pages/ManagementPage.vue'
 import SetupPage from '@/pages/SetupPage.vue'
 import StudentManagement from '@/pages/StudentManagement.vue'
+import StudentPortal from '@/pages/StudentPortal.vue'
 
 // Composables
 const { userRole, setUserRole } = useAuth()
@@ -130,7 +134,8 @@ const handleNavigation = (href: string): void => {
     'reports': 'reports',
     'management': 'management',
     'setup': 'setup',
-    'student-management': 'student-management'
+    'student-management': 'student-management',
+    'student-portal': 'student-portal'
   }
   
   const newPage = pageMap[href]

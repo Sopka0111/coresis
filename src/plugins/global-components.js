@@ -53,6 +53,12 @@ import ReportsPage from '@/pages/ReportsPage.vue'
 import ManagementPage from '@/pages/ManagementPage.vue'
 import SetupPage from '@/pages/SetupPage.vue'
 import Admissions from '@/pages/Admissions.vue'
+import StudentPortal from '@/pages/StudentPortal.vue'
+
+// Import new components
+import StatCard from '@/components/StatCard.vue'
+import ActivityCard from '@/components/ActivityCard.vue'
+import AnnouncementModal from '@/components/AnnouncementModal.vue'
 
 // Import composables
 import { useAuth } from '../composables/useAuth'
@@ -111,6 +117,12 @@ app.component('ReportsPage', ReportsPage)
 app.component('ManagementPage', ManagementPage)
 app.component('SetupPage', SetupPage)
 app.component('Admissions', Admissions)
+app.component('StudentPortal', StudentPortal)
+
+// Register new components
+app.component('StatCard', StatCard)
+app.component('ActivityCard', ActivityCard)
+app.component('AnnouncementModal', AnnouncementModal)
 
 // Provide composables globally
 app.provide('useAuth', useAuth)

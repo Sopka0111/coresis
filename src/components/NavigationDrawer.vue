@@ -133,6 +133,7 @@ const navigationItems = computed((): NavigationItem[] => {
   
   return [
     { title: 'Dashboard', href: 'dashboard', icon: 'mdi-speedometer' },
+    { title: 'Student Portal', href: 'student-portal', icon: 'mdi-account-school' },
     { title: 'Admissions', href: 'admissions', icon: 'mdi-account-plus' },
     { title: 'Registrar', href: 'registrar', icon: 'mdi-buffer' },
     { title: 'Finance', href: 'finance', icon: 'mdi-currency-usd' },
