@@ -4,6 +4,8 @@ import vuetify from './plugins/vuetify'
 
 const app = createApp(App)
 
+// Use plugins
 app.use(vuetify)
 
-app.mount('#app')
+// Mount the app
+app.mount('#app') 

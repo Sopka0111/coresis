@@ -1,0 +1,23 @@
+{
+  "name": "trade-school-sis",
+  "version": "1.0.0",
+  "description": "Student Information System for Trade Schools and Wellness Institutes",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vuetify": "^3.3.15",
+    "chart.js": "^4.4.0",
+    "@mdi/font": "^7.3.67",
+    "axios": "^1.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "vite": "^4.4.9",
+    "@types/node": "^20.5.0"
+  }
+} 
