@@ -88,8 +88,12 @@ const defaultOptions: ChartConfiguration['options'] = {
         label: function(context) {
           const label = context.label || ''
           const value = context.parsed
-          const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
-          const percentage = ((value / total) * 100).toFixed(1)
+          const dataset = context.dataset.data
+          const total = dataset.reduce((a: number, b: any) => {
+            const numB = typeof b === 'number' ? b : 0
+            return a + numB
+          }, 0)
+          const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : '0'
           return `${label}: ${value} (${percentage}%)`
         }
       }

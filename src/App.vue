@@ -85,7 +85,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useAuth } from '@/composables/useAuth'
+import { useAuth, type UserRole } from '@/composables/useAuth'
 
 // Import components
 import AppBar from '@/components/AppBar.vue'
@@ -140,7 +140,7 @@ const handleNavigation = (href: string): void => {
   }
 }
 
-const handleRoleChange = (newRole: string): void => {
+const handleRoleChange = (newRole: UserRole): void => {
   setUserRole(newRole)
   currentRole.value = newRole
   showNotification(`Role changed to ${newRole}`, 'success')

@@ -107,7 +107,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { Chart, registerables, ChartConfiguration } from 'chart.js'
 
 // Register Chart.js components
