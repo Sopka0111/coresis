@@ -143,11 +143,11 @@
           <v-btn icon="mdi-close" variant="text" @click="dialog = false" />
         </v-card-title>
         <v-card-text>
-          <StudentDetailCard :student="selectedStudent" />
+          <StudentDetailCard v-if="selectedStudent" :student="selectedStudent" />
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" @click="editStudent(selectedStudent)">
+          <v-btn v-if="selectedStudent" color="primary" @click="editStudent(selectedStudent)">
             Edit Student
           </v-btn>
           <v-btn variant="outlined" @click="dialog = false">
@@ -212,11 +212,20 @@ interface Student {
   status: string
   group: string
   approvalStatus: string
-  email?: string
+  email: string
   phone?: string
   address?: string
-  enrollmentDate?: string
+  enrollmentDate: string
   graduationDate?: string
+  funding: string
+  balance: number
+  transactions?: Array<{
+    id: string
+    date: string
+    type: string
+    amount: number
+    description?: string
+  }>
 }
 
 interface Filters {
@@ -302,7 +311,9 @@ const loadSampleData = (): void => {
       phone: '(555) 123-4567',
       address: '123 Main St, City, State 12345',
       enrollmentDate: '2024-09-01',
-      graduationDate: '2025-06-15'
+      graduationDate: '2025-06-15',
+      funding: 'Self-Pay',
+      balance: 1500.00
     },
     {
       studentId: 'STU002',
@@ -318,7 +329,9 @@ const loadSampleData = (): void => {
       phone: '(555) 234-5678',
       address: '456 Oak Ave, City, State 12345',
       enrollmentDate: '2024-01-15',
-      graduationDate: '2024-12-20'
+      graduationDate: '2024-12-20',
+      funding: 'Financial Aid',
+      balance: 0.00
     },
     {
       studentId: 'STU003',
@@ -333,7 +346,9 @@ const loadSampleData = (): void => {
       email: 'michael.brown@email.com',
       phone: '(555) 345-6789',
       address: '789 Pine Rd, City, State 12345',
-      enrollmentDate: '2024-09-01'
+      enrollmentDate: '2024-09-01',
+      funding: 'Veterans Benefits',
+      balance: 750.00
     },
     {
       studentId: 'STU004',
@@ -348,7 +363,9 @@ const loadSampleData = (): void => {
       email: 'emily.davis@email.com',
       phone: '(555) 456-7890',
       address: '321 Elm St, City, State 12345',
-      enrollmentDate: '2024-06-01'
+      enrollmentDate: '2024-06-01',
+      funding: 'Self-Pay',
+      balance: 2250.00
     },
     {
       studentId: 'STU005',
@@ -363,7 +380,9 @@ const loadSampleData = (): void => {
       email: 'david.wilson@email.com',
       phone: '(555) 567-8901',
       address: '654 Maple Dr, City, State 12345',
-      enrollmentDate: '2024-01-15'
+      enrollmentDate: '2024-01-15',
+      funding: 'Scholarship',
+      balance: 0.00
     }
   ]
 

@@ -354,6 +354,25 @@ const handleAdvancedSearchError = (error: string): void => {
   console.error('Advanced search error:', error)
 }
 
+// Missing methods for StudentDetailCard events
+const viewTranscript = (student: Student): void => {
+  console.log('Viewing transcript for:', student.name)
+  // Implement transcript viewing functionality
+  alert(`Transcript viewing for ${student.name} would be implemented here`)
+}
+
+const sendEmail = (student: Student): void => {
+  console.log('Sending email to:', student.name)
+  // Implement email functionality
+  alert(`Email functionality for ${student.name} would be implemented here`)
+}
+
+const viewSchedule = (student: Student): void => {
+  console.log('Viewing schedule for:', student.name)
+  // Implement schedule viewing functionality
+  alert(`Schedule viewing for ${student.name} would be implemented here`)
+}
+
 // Lifecycle
 onMounted(() => {
   loadStudents()

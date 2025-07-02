@@ -167,9 +167,64 @@ export function usePdfExport() {
     doc.save(`student-list-${new Date().toISOString().split('T')[0]}.pdf`)
   }
 
+  // Generate placement report PDF
+  const downloadPlacementReport = (students: any[], title: string = 'Student Placement Report') => {
+    const doc = new jsPDF()
+    
+    // Header
+    doc.setFontSize(20)
+    doc.text('Massage School Management System', 20, 20)
+    
+    doc.setFontSize(16)
+    doc.text(title, 20, 35)
+    
+    // Summary
+    const employed = students.filter(s => s.employedStatus === 'Employed').length
+    const seeking = students.filter(s => s.employedStatus === 'Seeking').length
+    const notSeeking = students.filter(s => s.employedStatus === 'Not Seeking').length
+    const placementRate = students.length > 0 ? ((employed / students.length) * 100).toFixed(1) : '0'
+    
+    doc.setFontSize(12)
+    doc.text(`Total Students: ${students.length}`, 20, 50)
+    doc.text(`Employed: ${employed}`, 20, 60)
+    doc.text(`Seeking Employment: ${seeking}`, 20, 70)
+    doc.text(`Not Seeking: ${notSeeking}`, 20, 80)
+    doc.text(`Placement Rate: ${placementRate}%`, 20, 90)
+    
+    // Students table
+    autoTable(doc, {
+      startY: 105,
+      head: [['Student ID', 'Name', 'Program', 'Graduation Date', 'Employment Status', 'Employer']],
+      body: students.map(s => [
+        s.studentId,
+        s.name,
+        s.program,
+        s.graduationDate || 'N/A',
+        s.employedStatus || 'Unknown',
+        s.employer?.name || 'N/A'
+      ]),
+      styles: {
+        fontSize: 9,
+        cellPadding: 3
+      },
+      headStyles: {
+        fillColor: [25, 118, 210],
+        textColor: 255
+      }
+    })
+    
+    // Footer
+    const finalY = (doc as any).lastAutoTable.finalY + 10
+    doc.setFontSize(10)
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, finalY)
+    
+    doc.save(`placement-report-${new Date().toISOString().split('T')[0]}.pdf`)
+  }
+
   return {
     downloadInvoice,
     downloadFinancialReport,
-    downloadStudentList
+    downloadStudentList,
+    downloadPlacementReport
   }
 } 

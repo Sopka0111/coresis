@@ -79,7 +79,7 @@
     <!-- Drawer Toggle Button (Mobile) -->
     <template #append>
       <v-list-item 
-        v-if="$vuetify.display.mdAndDown"
+        v-if="isMobile"
         @click="toggleDrawer"
         class="mt-auto"
       >
@@ -94,6 +94,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useDisplay } from 'vuetify'
 
 // Props
 interface NavigationItem {
@@ -119,11 +120,16 @@ const emit = defineEmits<{
   'logout': []
 }>()
 
+// Vuetify composables
+const { mdAndDown } = useDisplay()
+
 // Reactive data
 const drawer = computed({
   get: () => props.modelValue,
   set: (value: boolean) => emit('update:modelValue', value)
 })
+
+const isMobile = computed(() => mdAndDown.value)
 
 // Navigation items
 const navigationItems = computed((): NavigationItem[] => {

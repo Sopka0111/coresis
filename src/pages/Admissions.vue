@@ -268,7 +268,7 @@ const recentActivity = ref([
 
 // Methods
 const getStatusColor = (status: string): string => {
-  const colors = {
+  const colors: Record<string, string> = {
     'Pending': 'warning',
     'Approved': 'success',
     'Rejected': 'error',

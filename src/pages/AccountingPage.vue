@@ -159,6 +159,7 @@
       <!-- FINANCIAL REPORT MODAL -->
       <v-dialog v-model="dialog" max-width="900px" persistent>
         <TransactionDetailCard 
+          v-if="selectedRecord"
           :record="selectedRecord" 
           :can-view="canViewSensitiveData"
           @close="closeDialog"

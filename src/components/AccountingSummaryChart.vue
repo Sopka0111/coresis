@@ -50,7 +50,7 @@
       <div class="chart-legend mt-4">
         <div class="d-flex flex-wrap gap-4 justify-center">
           <div
-            v-for="(dataset, index) in chartData.datasets[0]"
+            v-for="(label, index) in chartData.labels"
             :key="index"
             class="d-flex align-center"
           >
@@ -59,7 +59,7 @@
               :style="{ backgroundColor: chartData.datasets[0].backgroundColor[index] }"
             ></div>
             <span class="text-body-2 font-weight-medium">
-              {{ chartData.labels[index] }}: ${{ dataset.toLocaleString() }}
+              {{ label }}: ${{ chartData.datasets[0].data[index]?.toLocaleString() || '0' }}
             </span>
           </div>
         </div>
@@ -186,7 +186,8 @@ const getChartConfig = (): ChartConfiguration => {
             label: function(context) {
               const label = context.label || ''
               const value = context.parsed || context.raw
-              return `${label}: $${value.toLocaleString()}`
+              const numValue = typeof value === 'number' ? value : 0
+              return `${label}: $${numValue.toLocaleString()}`
             }
           }
         }
