@@ -1,7 +1,4 @@
 // Global Components Registration
-import { createApp } from 'vue'
-import App from '../App.vue'
-import vuetify from './vuetify'
 
 // Import all components
 import MainLayout from '../layouts/MainLayout.vue'
@@ -58,65 +55,60 @@ import Admissions from '@/pages/Admissions.vue'
 import { useAuth } from '../composables/useAuth'
 import { usePdfExport } from '../composables/usePdfExport'
 
-// Create app instance
-const app = createApp(App)
+// Export plugin function for proper Vue app initialization
+export default function globalComponents(app) {
+  // Register layouts globally
+  app.component('MainLayout', MainLayout)
+  app.component('RouterLayout', RouterLayout)
 
-// Register layouts globally
-app.component('MainLayout', MainLayout)
-app.component('RouterLayout', RouterLayout)
+  // Register components globally
+  app.component('DashboardCards', DashboardCards)
+  app.component('BarChart', BarChart)
+  app.component('ActivitiesCard', ActivitiesCard)
+  app.component('AnnouncementsCard', AnnouncementsCard)
+  app.component('TodoListCard', TodoListCard)
+  app.component('NotificationsCard', NotificationsCard)
+  app.component('DocumentsCard', DocumentsCard)
+  app.component('CalendarView', CalendarView)
+  app.component('StudentFilterCard', StudentFilterCard)
+  app.component('FilterBar', FilterBar)
+  app.component('StudentTable', StudentTable)
+  app.component('StudentDetailCard', StudentDetailCard)
+  app.component('StudentStatsChart', StudentStatsChart)
+  app.component('StatusChart', StatusChart)
+  app.component('StudentFinanceCard', StudentFinanceCard)
+  app.component('FinanceChart', FinanceChart)
+  app.component('BalanceChart', BalanceChart)
+  app.component('FinanceFilterBar', FinanceFilterBar)
+  app.component('RoleSelector', RoleSelector)
+  app.component('AppBar', AppBar)
+  app.component('NavigationDrawer', NavigationDrawer)
+  app.component('HeaderBar', HeaderBar)
+  app.component('SidebarNav', SidebarNav)
+  app.component('SamplePage', SamplePage)
+  app.component('AccountingFilterBar', AccountingFilterBar)
+  app.component('AccountingTable', AccountingTable)
+  app.component('TransactionDetailCard', TransactionDetailCard)
+  app.component('AccountingSummaryChart', AccountingSummaryChart)
+  app.component('PlacementFilterBar', PlacementFilterBar)
+  app.component('PlacementTable', PlacementTable)
+  app.component('StudentPlacementCard', StudentPlacementCard)
+  app.component('PlacementSummaryChart', PlacementSummaryChart)
 
-// Register components globally
-app.component('DashboardCards', DashboardCards)
-app.component('BarChart', BarChart)
-app.component('ActivitiesCard', ActivitiesCard)
-app.component('AnnouncementsCard', AnnouncementsCard)
-app.component('TodoListCard', TodoListCard)
-app.component('NotificationsCard', NotificationsCard)
-app.component('DocumentsCard', DocumentsCard)
-app.component('CalendarView', CalendarView)
-app.component('StudentFilterCard', StudentFilterCard)
-app.component('FilterBar', FilterBar)
-app.component('StudentTable', StudentTable)
-app.component('StudentDetailCard', StudentDetailCard)
-app.component('StudentStatsChart', StudentStatsChart)
-app.component('StatusChart', StatusChart)
-app.component('StudentFinanceCard', StudentFinanceCard)
-app.component('FinanceChart', FinanceChart)
-app.component('BalanceChart', BalanceChart)
-app.component('FinanceFilterBar', FinanceFilterBar)
-app.component('RoleSelector', RoleSelector)
-app.component('AppBar', AppBar)
-app.component('NavigationDrawer', NavigationDrawer)
-app.component('HeaderBar', HeaderBar)
-app.component('SidebarNav', SidebarNav)
-app.component('SamplePage', SamplePage)
-app.component('AccountingFilterBar', AccountingFilterBar)
-app.component('AccountingTable', AccountingTable)
-app.component('TransactionDetailCard', TransactionDetailCard)
-app.component('AccountingSummaryChart', AccountingSummaryChart)
-app.component('PlacementFilterBar', PlacementFilterBar)
-app.component('PlacementTable', PlacementTable)
-app.component('StudentPlacementCard', StudentPlacementCard)
-app.component('PlacementSummaryChart', PlacementSummaryChart)
+  // Register pages globally
+  app.component('Dashboard', Dashboard)
+  app.component('HomeView', HomeView)
+  app.component('StudentManagement', StudentManagement)
+  app.component('RegistrarPage', RegistrarPage)
+  app.component('FinancePage', FinancePage)
+  app.component('AccountingPage', AccountingPage)
+  app.component('PlacementPage', PlacementPage)
+  app.component('ReportsPage', ReportsPage)
+  app.component('ManagementPage', ManagementPage)
+  app.component('SetupPage', SetupPage)
+  app.component('Admissions', Admissions)
 
-// Register pages globally
-app.component('Dashboard', Dashboard)
-app.component('HomeView', HomeView)
-app.component('StudentManagement', StudentManagement)
-app.component('RegistrarPage', RegistrarPage)
-app.component('FinancePage', FinancePage)
-app.component('AccountingPage', AccountingPage)
-app.component('PlacementPage', PlacementPage)
-app.component('ReportsPage', ReportsPage)
-app.component('ManagementPage', ManagementPage)
-app.component('SetupPage', SetupPage)
-app.component('Admissions', Admissions)
-
-// Provide composables globally
-app.provide('useAuth', useAuth)
-app.provide('usePdfExport', usePdfExport)
-
-app.use(vuetify)
-app.mount('#app')
-
-export default app 
+  // Provide composables globally
+  app.provide('useAuth', useAuth)
+  app.provide('usePdfExport', usePdfExport)
+}

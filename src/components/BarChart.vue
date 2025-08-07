@@ -105,23 +105,20 @@ const initializeChart = async (): Promise<void> => {
 
   await nextTick()
 
-  // Defer chart creation to ensure canvas is fully rendered
-  setTimeout(() => {
-    // Destroy existing chart if it exists
-    if (chartInstance) {
-      chartInstance.destroy()
-    }
+  // Destroy existing chart if it exists
+  if (chartInstance) {
+    chartInstance.destroy()
+  }
 
-    // Create new chart
-    chartInstance = new Chart(chartCanvas.value, {
-      type: 'bar',
-      data: props.data,
-      options: {
-        ...defaultOptions,
-        ...props.options
-      }
-    })
-  }, 0)
+  // Create new chart
+  chartInstance = new Chart(chartCanvas.value, {
+    type: 'bar',
+    data: props.data,
+    options: {
+      ...defaultOptions,
+      ...props.options
+    }
+  })
 }
 
 // Refresh chart data
