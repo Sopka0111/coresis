@@ -389,7 +389,13 @@ const tasks = ref<Task[]>([
 const tabs = computed<Tab[]>(() => [
   {
     label: 'Past Due',
-    count: getTasksForTab(0).length,
+    count: filteredTasks.value.filter(task => {
+      if (task.completed) return false
+      const dueDate = new Date(task.dueDate)
+      const today = new Date()
+      today.setHours(23, 59, 59, 999)
+      return dueDate < today
+    }).length,
     filter: (task: Task) => {
       if (task.completed) return false
       const dueDate = new Date(task.dueDate)
@@ -400,7 +406,14 @@ const tabs = computed<Tab[]>(() => [
   },
   {
     label: 'Due Today',
-    count: getTasksForTab(1).length,
+    count: filteredTasks.value.filter(task => {
+      if (task.completed) return false
+      const dueDate = new Date(task.dueDate)
+      const today = new Date()
+      const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+      const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999)
+      return dueDate >= startOfDay && dueDate <= endOfDay
+    }).length,
     filter: (task: Task) => {
       if (task.completed) return false
       const dueDate = new Date(task.dueDate)
@@ -412,7 +425,13 @@ const tabs = computed<Tab[]>(() => [
   },
   {
     label: 'Due in Next 7 Days',
-    count: getTasksForTab(2).length,
+    count: filteredTasks.value.filter(task => {
+      if (task.completed) return false
+      const dueDate = new Date(task.dueDate)
+      const today = new Date()
+      const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000)
+      return dueDate > today && dueDate <= nextWeek
+    }).length,
     filter: (task: Task) => {
       if (task.completed) return false
       const dueDate = new Date(task.dueDate)
