@@ -351,6 +351,12 @@ const loadNotifications = async (): Promise<void> => {
       throw new Error(`Failed to load notifications: ${response.statusText}`)
     }
     
+    // Check if response is HTML (error page) instead of JSON
+    const contentType = response.headers.get('Content-Type')
+    if (contentType && contentType.includes('text/html')) {
+      throw new Error('API endpoint not available - received HTML response instead of JSON')
+    }
+    
     const data = await response.json()
     notifications.value = data.notifications || data
     

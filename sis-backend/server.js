@@ -14,6 +14,7 @@ import accountingRoutes from './routes/accounting.routes.js'
 import reportsRoutes from './routes/reports.routes.js'
 import managementRoutes from './routes/management.routes.js'
 import setupRoutes from './routes/setup.routes.js'
+import notificationsRoutes from './routes/notifications.routes.js'
 
 // Load environment variables
 dotenv.config()
@@ -74,6 +75,7 @@ app.use('/api/accounting', accountingRoutes)
 app.use('/api/reports', reportsRoutes)
 app.use('/api/management', managementRoutes)
 app.use('/api/setup', setupRoutes)
+app.use('/api/notifications', notificationsRoutes)
 
 // 404 handler
 app.use('*', (req, res) => {
