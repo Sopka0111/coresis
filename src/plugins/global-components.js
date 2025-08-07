@@ -1,7 +1,7 @@
 // Global Components Registration
 import { createApp } from 'vue'
 import App from '../App.vue'
-import vuetify from './plugins/vuetify'
+import vuetify from './vuetify'
 
 // Import all components
 import MainLayout from '../layouts/MainLayout.vue'
