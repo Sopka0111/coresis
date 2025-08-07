@@ -10,7 +10,7 @@
           v-if="canView" 
           icon 
           color="primary" 
-          @click="downloadInvoice"
+          @click="handleDownloadInvoice"
           :loading="isGeneratingPdf"
         >
           <v-icon>mdi-download</v-icon>
@@ -430,7 +430,7 @@ const getInitials = (name: string) => {
 }
 
 // Methods
-const downloadInvoice = async () => {
+const handleDownloadInvoice = async () => {
   if (!props.canView) return
   
   isGeneratingPdf.value = true
